@@ -15,41 +15,55 @@
 -->
 
 JULI-dedicated jcl-over-slf4j library
--------------------------------------
+=====================================
 
-This project is a solution for using SLF4J and Logback as Tomcat internal
-logging system.
+This project is a solution for using [SLF4J](http://www.slf4j.org/) and
+[Logback](http://logback.qos.ch/) as [Tomcat](http://tomcat.apache.org/)
+internal logging system.
 
-This is highly inspirated by [tomcat-slf4j-logback](https://github.com/grgrzybek/tomcat-slf4j-logback).
+This library is a re-packaged bundle of [jcl-over-slf4j](http://www.slf4j.org/legacy.html#jclOverSLF4J),
+[SLF4J](http://www.slf4j.org/) and [Logback](http://logback.qos.ch/),
+highly inspirated by [tomcat-slf4j-logback](https://github.com/grgrzybek/tomcat-slf4j-logback).
+This was done in the context of documenting the [juli-to-slf4j](https://github.com/bgandon/juli-to-slf4j)
+bridge and its [alternatives](https://github.com/bgandon/juli-to-slf4j/blob/master/ALTERNATIVES.md).
 
-It aims at building an additional library that plugs into the
-_tomcat-extras-juli_ component to provide SLF4J logging with the Logback
-backend, without modifying the _tomcat-extras-juli_ library. (On the contrary,
-[tomcat-slf4j-logback](https://github.com/grgrzybek/tomcat-slf4j-logback)
-builds a smaller library using a subset of the _default_ tomcat-juli jar.)
+It builds an additional library that plugs into the
+[tomcat-extras-juli](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.apache.tomcat.extras%22%20AND%20a%3A%22tomcat-extras-juli%22)
+“extra” component to provide SLF4J logging with the Logback backend, keeping
+the _tomcat-extras-juli_ library separate, and unmodified.
+(Contrarily to [tomcat-slf4j-logback](https://github.com/grgrzybek/tomcat-slf4j-logback),
+which retains only a portion of the default _tomcat-juli_ in order to build a
+smaller library.)
 
 This lib provides:
 
-1. A bridge from the full JCL implementation of _tomcat-extras-juli_ and SLF4J.
+1. A JULI-dedicated bridge from the full JCL implementation of
+   _tomcat-extras-juli_ and a package-renamed SLF4J API.
 
 2. Package-renamed SLF4J & Logback libraries, so that they might not conflict
-   with any SLF4J & Logback that would ship with web applications.
+   with any SLF4J & Logback that web applications may ship with.
 
-Web application that ship their own SLF4J & Logback libraries will properly
-create separate logging contexts. This is the [simple approach](http://logback.qos.ch/manual/loggingSeparation.html#easy).
-The `conf/logback-catalina.xml` shall use the package-renamed code, prepending
-the `com.apache.juli` to all Logback slass names. JNDI cannot be setup since
-Logback intializes before the JNDI system is ready.
+Web applications that ship with their own SLF4J & Logback libraries will
+properly create separate logging contexts. This is the
+[simple approach](http://logback.qos.ch/manual/loggingSeparation.html#easy).
+The configuration in `conf/logback-catalina.xml` shall use the package-renamed
+code, prepending `com.apache.juli.` to all Logback class names.
+[JNDI](http://logback.qos.ch/manual/loggingSeparation.html#ContextJNDISelector)
+cannot be setup since Logback intializes before the Tomcat JNDI system is
+ready.
 
 
-Caveat
-------
+Caveats
+-------
 
 The default `org.apache.juli.logging.LogFactory` is not suppressed from the
 original `tomcat-extras-juli.jar`. It is just masked by the one provided by
 `tomcat-extras-juli-over-slf4j.jar`. This might not be portable because JVM
 implementations bring no guraranty as per the loading order of classes on the
 classpath.
+
+Running Tomcat with a security manager requires some more setup in
+`conf/catalina.policy`.
 
 
 Setup
