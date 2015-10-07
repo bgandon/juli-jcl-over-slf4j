@@ -56,11 +56,12 @@ ready.
 Caveats
 -------
 
-The default `org.apache.juli.logging.LogFactory` is not suppressed from the
+The `tomcat-extras-juli-over-slf4j.jar` must appear before the
+`tomcat-extras-juli.jar` on the `$CLASSPATH` as detailed below. Indeed, the
+default `org.apache.juli.logging.LogFactory` is not suppressed from the
 original `tomcat-extras-juli.jar`. It is just masked by the one provided by
-`tomcat-extras-juli-over-slf4j.jar`. This might not be portable because JVM
-implementations bring no guraranty as per the loading order of classes on the
-classpath.
+`tomcat-extras-juli-over-slf4j.jar`. Any reason for a non-guraanteed classpath
+order would result in a non-working system.
 
 Running Tomcat with a security manager requires some more setup in
 `conf/catalina.policy`.
