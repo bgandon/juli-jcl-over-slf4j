@@ -91,13 +91,15 @@ CATALINA_OPTS="$CATALINA_OPTS -Djuli.logback.configurationFile=$CATALINA_BASE/co
 5. Restart Tomcat.
 
 
-Author and License
-------------------
+Author and Licenses
+-------------------
 
 Copyright © 2015, Benjamin Gandon
 
-Like Tomcat, the JULI-JCL-over-SLF4J library is released under the terms of the
-[Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0).
+The JULI-JCL-over-SLF4J library is released under the terms of the
+[Apache 2.0 license](LICENSE.txt), excepted some specific sub-components, as
+detailed in [LICENSES.md](LICENSES.md).
+
 
 <!--
 # Local Variables:
