@@ -121,7 +121,3 @@ detailed in [LICENSES.md](LICENSES.md).
 # indent-tabs-mode: nil
 # End:
 -->
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/bgandon/juli-jcl-over-slf4j/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
