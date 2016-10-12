@@ -14,7 +14,7 @@
    limitations under the License.
 -->
 
-JULI-dedicated jcl-over-slf4j library
+JULI-dedicated jcl-over-slf4j library [![.](http://gaproxy.gstack.io/UA-68445280-1/bgandon/juli-jcl-over-slf4j/readme?pixel&dh=github.com)](https://github.com/gstackio/ga-beacon)
 =====================================
 
 This project is a solution for using [SLF4J](http://www.slf4j.org/) and
